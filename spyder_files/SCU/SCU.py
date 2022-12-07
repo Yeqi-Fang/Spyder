@@ -50,7 +50,7 @@ class SCU:
             except selenium.common.exceptions.NoSuchElementException:
                 print("对不起，非选课阶段")
                 wd.find_element(By.CSS_SELECTOR, 'li[id="1293220"]>a').click()
-                wd.find_element(By.CSS_SELECTOR, 'li[id="1293220"]>a').click()
+                # wd.find_element(By.CSS_SELECTOR, 'li[id="1293220"]>a').click()
         wd.switch_to.frame(wd.find_element(By.XPATH, '//*[@id="ifra"]'))
         wd.find_element(By.XPATH, '//*[@id="searchtj"]').send_keys(course)
         wd.find_element(By.XPATH, '//*[@id="queryButton"]').click()

@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 import selenium
 
+
 class SCU:
 
     def __init__(self, course: tuple, acceptable_nums: tuple,

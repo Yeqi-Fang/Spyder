@@ -75,8 +75,8 @@ class SCU:
             print('Failure!!!')
             return 0
 
-    def manage(self):
-        wd = self.log_in()
+    def manage(self, wd):
+        # wd = self.log_in()
         for i in range(len(self.course)):
             stats = self.choose_course(wd, self.course[i], self.acceptable_nums[i])
             if stats:
@@ -87,4 +87,5 @@ class SCU:
 
 if __name__ == '__main__':
     scu = SCU(course=('908005020',), acceptable_nums=(('06', '08'),))
-    scu.manage()
+    wd = scu.log_in()
+    scu.manage(wd)

@@ -3,7 +3,7 @@ import re
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-
+import selenium
 
 class SCU:
 
@@ -37,9 +37,19 @@ class SCU:
     def choose_course(wd, course, nums):
         b = re.compile(r'_(\d{2})')
         wd.find_element(By.CSS_SELECTOR, 'li[id="82020"]>a').click()
+
+        # 点击选课
         wd.find_element(By.CSS_SELECTOR, 'li[id="1293220"]>a').click()
         wd.find_element(By.CSS_SELECTOR, 'li[id="1293218"]>a').click()
-        wd.find_element(By.CSS_SELECTOR, 'li[id="zyxk"]>a').click()
+        # 如果非选课阶段下一段就会报错
+        while True:
+            try:
+                wd.find_element(By.CSS_SELECTOR, 'li[id="zyxk"]>a').click()
+                break
+            except selenium.common.exceptions.NoSuchElementException:
+                print("对不起，非选课阶段")
+                wd.find_element(By.CSS_SELECTOR, 'li[id="1293220"]>a').click()
+                wd.find_element(By.CSS_SELECTOR, 'li[id="1293220"]>a').click()
         wd.switch_to.frame(wd.find_element(By.XPATH, '//*[@id="ifra"]'))
         wd.find_element(By.XPATH, '//*[@id="searchtj"]').send_keys(course)
         wd.find_element(By.XPATH, '//*[@id="queryButton"]').click()

@@ -10,7 +10,7 @@ class SCU:
 
     def __init__(self, course: tuple, acceptable_nums: tuple,
                  url=r'http://zhjw.scu.edu.cn/login', wait_time=5,
-                 webdriver_path=r"D:/迅雷下载/chromedriver_win32/chromedriver.exe"):
+                 webdriver_path=r"C:\Program Files\driver\chromedriver_win32\chromedriver.exe"):
         self.url = url
         self.wait_time = wait_time
         self.webdriver_path = webdriver_path

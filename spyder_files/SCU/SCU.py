@@ -59,8 +59,13 @@ class SCU:
         for i in range(1, len(tr_list) + 1):
             input_ = wd.find_element(By.XPATH, f'//*[@id="xirxkxkbody"]/tr[{i}]')
             if 'disabled' not in input_.get_attribute('outerHTML'):
-                txt = wd.find_element(By.XPATH, f'//*[@id="xirxkxkbody"]/tr[{i}]/td[3]').get_attribute('outerHTML')
-                # print(txt)
+                try:
+                    txt = wd.find_element(By.XPATH, f'//*[@id="xirxkxkbody"]/tr[{i}]/td[3]').get_attribute('outerHTML')
+                    # if txt:
+                    #     print(txt)
+                except selenium.common.exceptions.NoSuchElementException:
+                    # print(E)
+                    print(f"Cannot find that course:{course}. Probably beacause There's no Extracurricular capacity")
                 num_available = re.search(b, txt).group(1)
                 if str(num_available) in str(nums):
                     wd.find_element(By.XPATH, f'//*[@id="xirxkxkbody"]/tr[{i}]/td[1]/input').click()
